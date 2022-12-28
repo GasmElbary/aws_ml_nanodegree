@@ -25,6 +25,8 @@ During the EDA, I found that:
 - 'temp' and 'atemp' are highly correlated, so we will drop one of them as they provide the same information. Having two highly correlated columns will act as a weighted feature.
 - 'windspeed' has a low correlation with 'count', so we can drop it as it will not add value.
 
+![model_test_score.png](img/corr_matrix.png)
+
 ### How much better did your model preform after adding additional features and why do you think that is?
 The original model, without new features, scored 1.80676. Then, when I added some features, it performed much better and scored 0.47140. Finally, when I added more features, it performed slightly worse and scored 0.47821. Feature engineering is well-known for improving the quality of models for many reasons, including:
 - Features in their current format might be harder to interpret and gain information from.
