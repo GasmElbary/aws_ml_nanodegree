@@ -52,7 +52,7 @@ I would spend more time manipulating and trying to engineer more features. Then,
 ![model_train_score.png](img/model_train_score.png)
 
 ### Create a line plot showing the top kaggle score for the three (or more) prediction submissions during the project.
-![model_test_score.png](img/model_test_score.png)
+![model_test_score.png](img/model_train_eval_score.png)
 
 ## Summary
 14,16,20,22,25,16,16
