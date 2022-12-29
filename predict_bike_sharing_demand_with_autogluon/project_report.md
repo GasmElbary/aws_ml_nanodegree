@@ -55,9 +55,6 @@ I would spend more time manipulating and trying to engineer more features. Then,
 ![model_test_score.png](img/model_train_eval_score.png)
 
 ## Summary
-14,16,20,22,25,16,16
-1.79118, 0.47359, 0.46987, 0.46846, 0.46966,0.42838,0.51985
-
 In the beginning, I trained the Autogluon model using the nine available features. Autogluon trained 14 models, and the model 'WeightedEnsemble_L3' ranked the best, which scored '1.79118' on Kaggle. Then for better dataset formatting, I changed the type of the columns that are supposed to be categorical but treated as integers to represent what they actually are. And, split the datetime column into 'year', 'month', 'day', and 'hour' as the original column format needs to be more informative for the model. Autogluon trained 16 models this time, and the best model was the same 'WeightedEnsemble_L3'. This time, the score improved significantly, scoring '0.47359'. 
 
 After that, I tried tuning 3 of the hyperparameters with 3 different configurations; The score improved in all configuration compared to the initital 2 models, scoring '0.46987', '0.46846', and '0.46966', respectively. The best model was "WeightedEnsemble_L3" in three configurations. The hyperparameters I tuned are 'num_boost_round', 'num_trials', and 'time_limit'. At the first run I set these parameters to (100, 8, and 660), in the second run (150, 12, 780), and finally to (200,16, and 900). I believe the model started to overfit after the third run of hpo since the training score decreased but the kaggle score increased slightly. There are plenty of hyperparameters to tune, and it is harder to tune more than one simultaneously.
@@ -65,16 +62,16 @@ After that, I tried tuning 3 of the hyperparameters with 3 different configurati
 After that, I added a 'weekday' feature using the datetime column, and after looking at the correlation matrix of the features, I found that 'windspeed' can be dropped as it doesn't correlate with the target. Also, I found that 'atemp' and 'temp' are highly correlated, so I can drop one of them. Moreover, I one-hot encoded "season", "weather", and "weekday" columns for better representation of categorical variables. Applying these changes, I scored the best '0.42838'. Autogluon trained 16 models this time, and the best model was 'WeightedEnsemble_L3'.
 
 Finally, I categorized  'hour' to column 'rush_hour', where:
-    - morning_rush: 7-9am (7-9)
-    - lunch_ruch: 11am-1pm (11-13)
-    - evening_rush: 5-6pm (17-19)
-    - no_rush: any time else
+- morning_rush: 7-9am (7-9)
+- lunch_ruch: 11am-1pm (11-13)
+- evening_rush: 5-6pm (17-19)
+- no_rush: any time else
     
 and 'temp' to column 'temp_categorized', where:
-    - Cold = <10 C
-    - mild = 10-20 C
-    - warm = 20-30 C
-    - hot = >30 C
+- Cold = <10 C
+- mild = 10-20 C
+- warm = 20-30 C
+- hot = >30 C
     
 Then I one-hot encoded 'rush_hour' and 'temp_categorized'; however, unfortunately I scored '0.51985' which is second worse score. I believe this happened because my choice of splits wasn't the best. I'll need to split these columns using different configurations.
 
